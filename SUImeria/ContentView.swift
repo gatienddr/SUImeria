@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+
+        let padding: CGFloat = 16
+
+        ScrollView {
             BankingAccountView("Actions, cryptos, métaux", balance: 12.24)
 
             BankingAccountView("Compte Lydia", balance: 4.33, interestRate: 2)
@@ -21,6 +24,11 @@ struct ContentView: View {
                 hasCreditCardLinked: true,
                 hasBottomArrow: true
             )
+            .padding([.bottom], padding
+            )
+
+            RealWalletView()
+
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundGreen)
