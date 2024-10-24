@@ -33,6 +33,8 @@ struct ContentView: View {
             PurchasesView()
 
             RenumerationView()
+
+            PremiumOfferView()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundGreen)
