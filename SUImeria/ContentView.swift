@@ -35,6 +35,9 @@ struct ContentView: View {
             RenumerationView()
 
             PremiumOfferView()
+
+            ButtonsListView()
+
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundGreen)
