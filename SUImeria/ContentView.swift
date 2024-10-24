@@ -37,9 +37,14 @@ struct ContentView: View {
             PremiumOfferView()
 
             ButtonsListView()
+                .padding([.bottom], 100)
 
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundGreen)
+        .overlay(alignment: .bottomTrailing) {
+            RoundedButtonView()
+                .offset(x: -ViewService.padding, y: -ViewService.padding)
+        }
     }
 }
