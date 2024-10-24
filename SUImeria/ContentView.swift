@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
 
-        let padding: CGFloat = 16
+    let padding: CGFloat = 16
+
+    var body: some View {
 
         ScrollView {
             BankingAccountView("Actions, cryptos, métaux", balance: 12.24)
@@ -29,6 +30,9 @@ struct ContentView: View {
 
             RealWalletView()
 
+            PurchasesView()
+
+            RenumerationView()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundGreen)
