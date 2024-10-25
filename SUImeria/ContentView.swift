@@ -11,40 +11,47 @@ struct ContentView: View {
 
     let padding: CGFloat = 16
 
+    @State private var scrollPosition: CGPoint = .zero
+
     var body: some View {
-
         ScrollView {
-            BankingAccountView("Actions, cryptos, métaux", balance: 12.24)
+            VStack {
+                BankAccountsView(scrollPosition: $scrollPosition)
 
-            BankingAccountView("Compte Lydia", balance: 4.33, interestRate: 2)
+                RealWalletView()
+                    .id("wallet")
 
-            BankingAccountView(
-                "Perso",
-                balance: 64.98,
-                interestRate: 2,
-                hasCreditCardLinked: true,
-                hasBottomArrow: true
-            )
-            .padding([.bottom], padding
-            )
+                PurchasesView()
 
-            RealWalletView()
+                RenumerationView()
 
-            PurchasesView()
+                PremiumOfferView()
 
-            RenumerationView()
+                ButtonsListView()
+                    .padding([.bottom], 100)
 
-            PremiumOfferView()
-
-            ButtonsListView()
-                .padding([.bottom], 100)
-
+            }
+            .background(GeometryReader { geometry in
+                Color.clear
+                    .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
+            })
         }
+
+        .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+            self.scrollPosition = value
+        }
+        .coordinateSpace(name: "scroll")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundGreen)
         .overlay(alignment: .bottomTrailing) {
             RoundedButtonView()
                 .offset(x: -ViewService.padding, y: -ViewService.padding)
         }
+    }
+}
+
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGPoint = .zero
+    static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
     }
 }

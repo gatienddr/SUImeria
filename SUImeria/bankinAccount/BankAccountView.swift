@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BankingAccountView: View {
+struct BankAccountView: View {
 
     private let title: String
 
@@ -103,5 +103,6 @@ struct BankingAccountView: View {
             }
         }
         .padding([.horizontal], 16)
+       
     }
 }
