@@ -17,6 +17,8 @@ struct RenumerationView: View {
                 Text("Rémunération 2 %")
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
+                    .id("renumeration")
+
 
                 Text("Encore 9 paiements pour la débloquer")
                     .font(.system(size: 16))

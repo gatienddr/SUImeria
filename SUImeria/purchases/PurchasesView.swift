@@ -21,12 +21,11 @@ struct PurchasesView: View {
                 TextField(
                     "",
                     text: $paymentHistorySearchValue,
-                    prompt: Text("Paiement passés")
+                    prompt: Text("Paiements passés")
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
                 )
                 .foregroundColor(.white)
-
             }
             .padding([.horizontal, .top], ViewService.padding)
 

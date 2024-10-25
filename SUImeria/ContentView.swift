@@ -11,15 +11,17 @@ struct ContentView: View {
 
     let padding: CGFloat = 16
 
-    @State private var scrollPosition: CGPoint = .zero
+    @State private var scrollPositionValue: CGPoint = .zero
+
+    @State private var position = ScrollPosition(edge: .top)
 
     var body: some View {
+
         ScrollView {
             VStack {
-                BankAccountsView(scrollPosition: $scrollPosition)
+                BankAccountsView(scrollPosition: $scrollPositionValue)
 
                 RealWalletView()
-                    .id("wallet")
 
                 PurchasesView()
 
@@ -29,16 +31,18 @@ struct ContentView: View {
 
                 ButtonsListView()
                     .padding([.bottom], 100)
-
             }
+            .onAppear(perform: {
+                position.scrollTo(id: "renumeration")
+            })
             .background(GeometryReader { geometry in
                 Color.clear
                     .preference(key: ScrollOffsetPreferenceKey.self, value: geometry.frame(in: .named("scroll")).origin)
             })
         }
-
+        .scrollPosition($position)
         .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-            self.scrollPosition = value
+            self.scrollPositionValue = value
         }
         .coordinateSpace(name: "scroll")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -47,6 +51,7 @@ struct ContentView: View {
             RoundedButtonView()
                 .offset(x: -ViewService.padding, y: -ViewService.padding)
         }
+        .ignoresSafeArea(.container, edges: .top)
     }
 }
 
